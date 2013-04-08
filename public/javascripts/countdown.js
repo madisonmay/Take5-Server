@@ -54,8 +54,9 @@ jQuery.fn.countdown = function(userOptions) {
             digits[c].__max = (c % 2 == 0) ? 5 : 9;
           }++c;
         } else elem = $('<div class="cntSeparator"/>').css({
-          float: 'left'
-        }).text(options.startTime[i]);
+          float: 'left',
+          'margin-top': '30px'
+        }).text(':');
 
         where.append(elem)
       }
