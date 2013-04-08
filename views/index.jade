@@ -1,5 +1,12 @@
 extends layout
 
+block scripts
+    script(src="/javascripts/countdown.js")
+    script
+        $(document).ready(function() {
+            $('#counter').countdown({startTime: "01:12:32:55"});
+        });
+
 block content
-  h1= title
-  p Welcome to #{title}
+
+
