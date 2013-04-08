@@ -3,8 +3,14 @@ extends layout
 block scripts
     script(src="/javascripts/countdown.js")
     script
+
+        function breakEnded() {
+            console.log("Break ended");
+        }
+
         $(document).ready(function() {
-            $('#counter').countdown({image: 'images/digits.png', startTime: "5:00", format: "m:ss",});
+            $('#counter').countdown({image: 'images/digits.png', startTime: "05:00", format: "mm:ss", stepTime: 60,
+                                    timerEnd: breakEnded, digitWidth: 53, digitHeight: 77});
         });
 
 block content
