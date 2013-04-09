@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	div(class='container well min400')
+		form(class='text-center form-horizontal', id='add')
+			fieldset
+				legend(class='text-center') Add Activity
+				label
+				textarea(class='span6',name='description', id='description', placeholder='Description', rows=5)
+				label
+				textarea(class='span6', name='categories', id='categories', placeholder='Categories', rows=5)
+				span(class='help-block text-center') Separate Categories with a comma.
+				label
+				input(type='submit', class='text-center btn btn-primary') Add
+
+block scripts
+	script(src='javascripts/add.js')

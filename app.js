@@ -38,11 +38,13 @@ app.configure('development', function(){
 // GET requests.
 app.get('/', routes.index);
 app.get('/login', user.login); // Logging in, creating a user.
+app.get('/add', user.addactivity);//
 
 
 // POST requests.
 app.post('/login', user.loginauth); // Login.
 app.post('/fetch', database.fetch); // Get a break task
+app.post('/add', database.add);//Add activities to database
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

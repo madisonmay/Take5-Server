@@ -34,3 +34,7 @@ function login(req, res, user) {
     req.session.user = user;
     return res.redirect('/');
 }
+
+exports.addactivity = function(req, res) {
+	res.render('add', {title: 'Add an Activity'});
+};

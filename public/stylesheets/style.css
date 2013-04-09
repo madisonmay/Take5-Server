@@ -11,3 +11,7 @@ a {
     border: 2px solid black;
 }
 */
+
+.min400 {
+	min-width: 400px
+}
