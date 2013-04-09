@@ -9,7 +9,10 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , mongoose = require('mongoose')
-  , database = require('./routes/database');
+  , database = require('./routes/database')
+  , passport = require('passport')
+  , GoogleStrategy = require('passport-google').Strategy
+  , User = require('./models/user_schema');
 
 var app = express();
 
@@ -38,11 +41,27 @@ app.configure('development', function(){
 // GET requests.
 app.get('/', routes.index);
 app.get('/login', user.login); // Logging in, creating a user.
-
+app.get('/auth/google', passport.authenticate('google'));
+app.get('/auth/google/return', 
+  passport.authenticate('google', { successRedirect: '/',
+                                    failureRedirect: '/login' }));
 
 // POST requests.
-app.post('/login', user.loginauth); // Login.
 app.post('/fetch', database.fetch); // Get a break task
+
+
+  passport.use(new GoogleStrategy({
+      returnURL: 'http://localhost:3000/auth/google/return',
+      realm: 'http://localhost:3000'
+    },
+    function(identifier, profile, done) {
+      // User.findOrCreate({ openId: identifier }, function(err, user) {
+      //   done(err, user);
+      // });
+      console.log(identifier, profile);
+      done();
+    }
+  ));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
