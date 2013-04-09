@@ -10,7 +10,6 @@ exports.login = function(req, res) {
 
 
 
-<<<<<<< HEAD
 function login(req, res, user) {
     req.session.user = user;
     return res.redirect('/');
@@ -19,7 +18,7 @@ function login(req, res, user) {
 exports.addactivity = function(req, res) {
 	res.render('add', {title: 'Add an Activity'});
 };
-=======
+
 // exports.loginauth = function(req, res) {
 // 	User.findOne({username: req.body.username}).exec(function (err, user) { // Starts having trouble here.
 // 		if (err) {
