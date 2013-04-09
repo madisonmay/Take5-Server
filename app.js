@@ -10,7 +10,7 @@ var express = require('express')
   , path = require('path')
   , mongoose = require('mongoose')
   , database = require('./routes/database')
-  , passport = require('passport')
+  , passport = require('./routes/passport')
   , GoogleStrategy = require('passport-google').Strategy
   , User = require('./models/user_schema');
 
@@ -51,23 +51,8 @@ app.get('/auth/google/return',
   passport.authenticate('google', { successRedirect: '/',
                                     failureRedirect: '/login' }));
 
-
 // POST requests.
 app.post('/add', database.add);//Add activities to database
-
-
-  passport.use(new GoogleStrategy({
-      returnURL: 'http://localhost:3000/auth/google/return',
-      realm: 'http://localhost:3000'
-    },
-    function(identifier, profile, done) {
-      // User.findOrCreate({ openId: identifier }, function(err, user) {
-      //   done(err, user);
-      // });
-      console.log(identifier, profile);
-      done();
-    }
-  ));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -6,6 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+#login {
+    position: absolute;
+}
 /*
 * {
     border: 2px solid black;
