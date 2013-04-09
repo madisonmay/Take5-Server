@@ -10,7 +10,7 @@ var express = require('express')
   , path = require('path')
   , mongoose = require('mongoose')
   , database = require('./routes/database')
-  , passport = require('passport')
+  , passport = require('./routes/passport')
   , GoogleStrategy = require('passport-google').Strategy
   , User = require('./models/user_schema');
 
@@ -42,24 +42,12 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/login', user.login); // Logging in, creating a user.
 app.get('/add', user.addactivity);//
-app.get('/auth/google', passport.authenticate('google'));
-app.get('/auth/google/return',
-  passport.authenticate('google', { successRedirect: '/',
-                                    failureRedirect: '/login' }));
 
 
-    passport.use(new GoogleStrategy({
-        returnURL: 'http://localhost:3000/auth/google/return',
-        realm: 'http://localhost:3000'
-      },
-      function(identifier, profile, done) {
-        // User.findOrCreate({ openId: identifier }, function(err, user) {
-        //   done(err, user);
-        // });
-        console.log(identifier, profile);
-        done();
-      }
-  ));
+app.get('/auth/google', passport.authenticate);
+app.get('/auth/google/return', passport.authenticate2);
+
+
 // POST requests.
 app.post('/fetch', database.fetch); // Get a break task
 app.post('/add', database.add);//Add activities to database
