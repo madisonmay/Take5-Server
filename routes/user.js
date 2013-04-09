@@ -10,10 +10,10 @@ exports.login = function(req, res) {
 
 // This should code work, not sure why it doesn't.
 exports.loginauth = function(req, res) {
-	User.findOne({username: req.body.username}).exec(function (err, response) { // Starts having trouble here.
+	User.findOne({username: req.body.username}).exec(function (err, user) { // Starts having trouble here.
 		if (err) {
 			console.log("Error finding user", err);
-		} else if (!response) {
+		} else if (!user) {
 			console.log("create new user");
 			var user = new User({username: req.body.username});
 			user.save(function (err) {
@@ -31,6 +31,6 @@ exports.loginauth = function(req, res) {
 };
 
 function login(req, res, user) {
-    req.session.user = req.body.username;
+    req.session.user = user;
     return res.redirect('/');
 }

@@ -13,14 +13,20 @@ var express = require('express')
 
 var app = express();
 
-app.configure(function(){
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/take5');
+
+
+app.configure(function () {
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('secret', process.env.SESSION_SECRET || 'terrible, terrible secret')
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(express.cookieParser(app.get('secret')));
+  app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -36,6 +42,7 @@ app.get('/login', user.login); // Logging in, creating a user.
 
 // POST requests.
 app.post('/login', user.loginauth); // Login.
+app.post('/fetch', database.fetch); // Get a break task
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

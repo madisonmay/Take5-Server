@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var user_schema = mongoose.Schema({
 	username: String,
-	activities_done: Array
+	activities_done: Array,
+	preferred_categories: [String]
 })
 
 var User = mongoose.model('User', user_schema);
