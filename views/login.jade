@@ -3,7 +3,7 @@ extends layout
 block content
     div.hero-unit(style="margin-left: 35%; margin-right: 35%; min-width: 300px; text-align: center;")
       h1(style="margin-bottom: 10px;") #{title}
-      form(action='/', method='post', id='/login')
+      form(action='/login', method='post', id='/login')
         hr
         input(name='username', id='username', type='text', placeholder="Username...")
         input(name='password', id='password', type='password', placeholder="Password...")
