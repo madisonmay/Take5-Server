@@ -46,10 +46,8 @@ app.get('/fetch', database.fetch); // Get a break task
 app.get('/add', user.addactivity);// Add an activity
 
 
-app.get('/auth/google', passport.authenticate('google'));
-app.get('/auth/google/return', 
-  passport.authenticate('google', { successRedirect: '/',
-                                    failureRedirect: '/login' }));
+app.get('/auth/google', passport.authenticate);
+app.get('/auth/google/return', passport.authenticate2);
 
 // POST requests.
 app.post('/add', database.add);//Add activities to database
