@@ -41,15 +41,17 @@ app.configure('development', function(){
 // GET requests.
 app.get('/', routes.index);
 app.get('/login', user.login); // Logging in, creating a user.
-app.get('/add', user.addactivity);//
+
+app.get('/fetch', database.fetch); // Get a break task
+app.get('/add', user.addactivity);// Add an activity
 
 
-app.get('/auth/google', passport.authenticate);
-app.get('/auth/google/return', passport.authenticate2);
-
+app.get('/auth/google', passport.authenticate('google'));
+app.get('/auth/google/return', 
+  passport.authenticate('google', { successRedirect: '/',
+                                    failureRedirect: '/login' }));
 
 // POST requests.
-app.post('/fetch', database.fetch); // Get a break task
 app.post('/add', database.add);//Add activities to database
 
 http.createServer(app).listen(app.get('port'), function(){
