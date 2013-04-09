@@ -4,9 +4,5 @@ block content
     script(src='/javascripts/login.js')
     div.hero-unit#login(style="margin-left: 35%; margin-right: 35%; min-width: 300px; text-align: center;")
       h1(style="margin-bottom: 10px;") #{title}
-      form(action='/login', method='post', id='/login')
-        hr
-        input(name='username', id='username', type='text', placeholder="Username...")
-        input(name='password', id='password', type='password', placeholder="Password...")
-        hr
-        button('type='submit', class='btn btn-success', style="margin-left: 15px; margin-top: -10px") Login
+      br
+      a(href='/auth/google') Sign In with Google
