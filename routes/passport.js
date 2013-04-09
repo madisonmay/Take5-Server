@@ -10,7 +10,7 @@ passport.use(new GoogleStrategy({
     // User.findOrCreate({ openId: identifier }, function(err, user) {
     //   done(err, user);
     // });
-    console.log(identifier, profile);
+    console.log(identifier);
 
 // DO USER DATABASE STUFF HERE
 
