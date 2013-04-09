@@ -44,4 +44,3 @@ exports.addactivity = function(req, res) {
 //     req.session.user = user;
 //     return res.redirect('/');
 // }
->>>>>>> 65dfbcb5f22626e81a85243c8f71d5804ff81b68
