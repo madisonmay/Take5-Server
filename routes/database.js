@@ -15,7 +15,7 @@ exports.fetch = function(req,res){
 				}
 			}
 		}
-		res.render('break',{title:'Break', activity: activities[Math.floor(Math.random()*activities.length)];})
+		res.render('break',{title:'Break', activity: activities[Math.floor(Math.random()*activities.length)]});
 	});
 };
 
