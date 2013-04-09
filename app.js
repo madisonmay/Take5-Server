@@ -46,23 +46,23 @@ app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return',
   passport.authenticate('google', { successRedirect: '/',
                                     failureRedirect: '/login' }));
+
+
+    passport.use(new GoogleStrategy({
+        returnURL: 'http://localhost:3000/auth/google/return',
+        realm: 'http://localhost:3000'
+      },
+      function(identifier, profile, done) {
+        // User.findOrCreate({ openId: identifier }, function(err, user) {
+        //   done(err, user);
+        // });
+        console.log(identifier, profile);
+        done();
+      }
+  ));
 // POST requests.
 app.post('/fetch', database.fetch); // Get a break task
 app.post('/add', database.add);//Add activities to database
-
-
-  passport.use(new GoogleStrategy({
-      returnURL: 'http://localhost:3000/auth/google/return',
-      realm: 'http://localhost:3000'
-    },
-    function(identifier, profile, done) {
-      // User.findOrCreate({ openId: identifier }, function(err, user) {
-      //   done(err, user);
-      // });
-      console.log(identifier, profile);
-      done();
-    }
-  ));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
