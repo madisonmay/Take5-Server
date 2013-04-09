@@ -55,7 +55,7 @@ jQuery.fn.countdown = function(userOptions) {
           }++c;
         } else elem = $('<div class="cntSeparator"/>').css({
           float: 'left',
-          'margin-top': '30px'
+          'margin-top': '25px'
         }).text(':');
 
         where.append(elem)

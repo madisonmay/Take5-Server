@@ -2,6 +2,7 @@ extends layout
 
 block scripts
     script(src="/javascripts/countdown.js")
+    script(src="/javascripts/timer.js")
     script
 
         function breakEnded() {
@@ -14,7 +15,7 @@ block scripts
         });
 
 block content
-    div.hero-unit(style="margin-left: 30%; margin-right: 30%; padding-left: 10%; padding-right: 10%; min-width: 300px;")
+    div.hero-unit#timer(style="margin-left: 30%; margin-right: 30%; padding-left: 10%; padding-right: 10%; min-width: 300px;")
         div#counter(style="padding-left:33px;")
 
 
