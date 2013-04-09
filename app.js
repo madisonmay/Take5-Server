@@ -38,6 +38,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.configure('production', function () {
+  app.set('host', process.env.HOST);
+});
+
 // GET requests.
 app.get('/', routes.index);
 app.get('/login', user.login); // Logging in, creating a user.
