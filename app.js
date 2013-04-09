@@ -41,18 +41,18 @@ app.configure('development', function(){
 // GET requests.
 app.get('/', routes.index);
 app.get('/login', user.login); // Logging in, creating a user.
-<<<<<<< HEAD
-app.get('/add', user.addactivity);//
 
-=======
+app.get('/fetch', database.fetch); // Get a break task
+app.get('/add', user.addactivity);// Add an activity
+
+
 app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return', 
   passport.authenticate('google', { successRedirect: '/',
                                     failureRedirect: '/login' }));
->>>>>>> 65dfbcb5f22626e81a85243c8f71d5804ff81b68
+
 
 // POST requests.
-app.post('/fetch', database.fetch); // Get a break task
 app.post('/add', database.add);//Add activities to database
 
 
