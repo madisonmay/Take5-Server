@@ -23,16 +23,16 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/take5');
 // Setup for passport stuff
 var passport = require('passport')
 
-passport.serializeUser(function(user, done) {
-  console.log(user);
-  done(null, user.email);
-});
+// passport.serializeUser(function(user, done) {
+//   console.log(user);
+//   done(null, user.email);
+// });
 
-passport.deserializeUser(function(email, done) {
-  User.findOne(email, function(err, user) {
-    done(err, user);
-  });
-});
+// passport.deserializeUser(function(email, done) {
+//   User.findOne(email, function(err, user) {
+//     done(err, user);
+//   });
+// });
 
 passport.use(new GoogleStrategy({
     returnURL: 'http://localhost:3000/auth/google/return',
@@ -42,6 +42,7 @@ passport.use(new GoogleStrategy({
     // User.findOrCreate({ openId: identifier }, function(err, user) {
     //   done(err, user);
     // });
+
     console.log('in the function');
     var email = profile.emails[0].value;
     console.log(email);
@@ -66,9 +67,10 @@ passport.use(new GoogleStrategy({
           return done(null, user);
         });
       }
-      else 
+      else {
         console.log('found user');
         return done(null, user);
+      }
     });
   }));
 
@@ -82,14 +84,14 @@ app.configure(function () {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser(app.get('secret')));
-  app.use(express.session({
-    maxAge: new Date(Date.now() + 3600000),
-    store: new MongoStore(
-      {db:mongoose.connection.db},
-      function(err){
-          console.log(err || 'connect-mongodb setup ok');
-        })
-  }));
+  // app.use(express.session({
+  //   maxAge: new Date(Date.now() + 3600000),
+  //   store: new MongoStore(
+  //     {db:mongoose.connection.db},
+  //     function(err){
+  //         console.log(err || 'connect-mongodb setup ok');
+  //       })
+  // }));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
@@ -108,9 +110,25 @@ app.get('/fetch', database.fetch); // Get a break task
 app.get('/add', user.addactivity);// Add an activity
 
 
-app.get('/auth/google', passport.authenticate('google'));
-app.get('/auth/google/return', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/' }));
+// Passport session setup.
+//   To support persistent login sessions, Passport needs to be able to
+//   serialize users into and deserialize users out of the session.  Typically,
+//   this will be as simple as storing the user ID when serializing, and finding
+//   the user by ID when deserializing.
+//
+//   Both serializer and deserializer edited for Remember Me functionality
+passport.serializeUser(function(user, done) {
+    done(null, user.email);
+});
 
+passport.deserializeUser(function(email, done) {
+    User.findOne({email:email}, function(err, user) {
+        done(err, user);
+    });
+});
+
+app.get('/auth/google', passport.authenticate('google'));
+app.get('/auth/google/return', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
 // POST requests.
 app.post('/add', database.add);//Add activities to database
@@ -120,8 +138,7 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
-function loginRequired(){ 
+function loginRequired(){
   return function(req, res, next){
-    
   };
 }
