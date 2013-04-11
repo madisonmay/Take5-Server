@@ -36,4 +36,4 @@ passport.use(new GoogleStrategy({
 
 exports.authenticate = passport.authenticate('google');
 
-exports.authenticate2 = passport.authenticate('google', { successRedirect: '/', failureRedirect: '/' });
+exports.authenticate2 = passport.authenticate('google', {successRedirect: '/', failureRedirect: '/' });
