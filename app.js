@@ -21,11 +21,12 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/take5');
 
 
 // Setup for passport stuff
+// Now includes persistent sessions
 var passport = require('passport')
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:3000/auth/google/return',
-    realm: 'http://localhost:3000'
+    returnURL: process.env.HOST + '/auth/google/return',
+    realm: process.env.HOST
   },
   function(identifier, profile, done) {
 
