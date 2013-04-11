@@ -1,9 +1,14 @@
 extends layout
 
-block content
+block scripts
+    script(src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js")
     script(src='/javascripts/login.js')
-    div.hero-unit.span4.offset4#login(style="text-align: center; max-width: 400px")
-      h1(style="margin-bottom: 10px;") #{title}
-      br
-      a(href='/auth/google')
-        button.btn.btn-success.btn-large() Sign In with Google
+
+block content
+    div(style="text-align: center; width: 100%; position: absolute")
+        h1#take_5(style="display: inline-block;")  Take5
+    //- div.hero-unit.span3.offset5#login(style="text-align: center; max-width: 400px; min-width: 250px;")
+    //-   h1(style="margin-bottom: 10px;") #{title}
+    //-   br
+    //-   a(href='/auth/google')
+    //-     button.btn.btn-success.btn-large() Sign In with Google
