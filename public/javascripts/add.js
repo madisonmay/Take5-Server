@@ -6,6 +6,7 @@ $(document).ready(function(){
 	$('#add').submit(function () {
   		var categories = $('#categories').val()
 		var description = $('#description').val();
+        var url = $('.url').val();
 		// if ($(':selected').length > 0){
 		// 	var selected = [];
 		// 	for (var i = 0; i < $(':selected').length; i++) {
@@ -22,16 +23,16 @@ $(document).ready(function(){
 		// // for (var i = 0; i < catArray.length; i++) {
 		// // 	activityCategories[i]=catArray[i].replace(' ','');
 		// // };
-		$.post("/add", { "description": description, "categories": categories },
+		$.post("/add", { "description": description, "categories": categories, "image_url":url},
 			function(err){
-				console.log(err);
-				console.log('hi');
 		        if (err){
+                    console.log('Error adding activity');
 		 	      	console.log('error',err);
 		        }
 		        else{
-		           	console.log('success');
+		           	console.log('Activity added successfully.');
 		           	$('#description').val('');
+                    $('.url').val('');
 					$('#categories option').attr('selected',false);
 					$('.selections').val('').trigger('liszt:updated');
 				}
