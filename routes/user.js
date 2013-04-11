@@ -19,6 +19,10 @@ exports.addactivity = function(req, res) {
 	res.render('add', {title: 'Add an Activity'});
 };
 
+exports.break = function(req, res) {
+    res.render('break', {title: 'Take a break!'})
+}
+
 // exports.loginauth = function(req, res) {
 // 	User.findOne({username: req.body.username}).exec(function (err, user) { // Starts having trouble here.
 // 		if (err) {

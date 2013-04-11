@@ -1,4 +1,14 @@
 $(document).ready(function(){
+
+    var h = $(document).height() / 2;
+    var h2 = $('#outer').height();
+
+    console.log(h);
+    console.log(h2);
+    $('#outer').css('top', parseInt(h-h2) + 'px');
+    console.log("Moved");
+
+
 	console.log("Ready")
 	$('#add').submit(function () {
 		console.log('ready');

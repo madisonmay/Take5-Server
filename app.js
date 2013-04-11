@@ -51,6 +51,7 @@ app.get('/auth/google/return', passport.authenticate2);
 
 // POST requests.
 app.post('/add', database.add);//Add activities to database
+app.get('/break', user.break)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

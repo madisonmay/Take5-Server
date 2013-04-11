@@ -1,5 +1,10 @@
 extends layout
 
 block content
-	div(class='container-fluid')
-		div #{activity.description}
+    script(src="/javascripts/break.js")
+    div.container
+        div.hero-unit.span6.offset3.pagination-centered#break(style="width: 50%; max-width: 400px; text-align: center;")
+          h3(style="margin-bottom: 10px; text-align: center;") Take a break.  You've earned it!
+          br
+          img(src="/images/fitness.png", style="border-radius: 20px;")
+

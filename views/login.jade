@@ -2,7 +2,7 @@ extends layout
 
 block content
     script(src='/javascripts/login.js')
-    div.hero-unit#login(style="margin-left: 35%; margin-right: 35%; min-width: 300px; text-align: center;")
+    div.hero-unit.span4.offset4#login(style="text-align: center; max-width: 400px")
       h1(style="margin-bottom: 10px;") #{title}
       br
       a(href='/auth/google')
