@@ -99,6 +99,7 @@ app.get('/add', user.addactivity);// Add an activity
 app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/' }));
 
+
 // POST requests.
 app.post('/add', database.add);//Add activities to database
 app.get('/break', user.break)

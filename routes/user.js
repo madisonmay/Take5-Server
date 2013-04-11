@@ -43,7 +43,6 @@ exports.break = function(req, res) {
 // 		}
 // 	});
 // };
-
 // function login(req, res, user) {
 //     req.session.user = user;
 //     return res.redirect('/');
