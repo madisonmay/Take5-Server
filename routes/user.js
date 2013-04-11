@@ -5,15 +5,15 @@ var Activity = require('../models/activity_schema')
   	, GoogleStrategy = require('passport-google').Strategy;
 
 exports.login = function(req, res) {
+
 	res.render('login', {title: "Sign In"});
 };
 
 
-
-function login(req, res, user) {
-    req.session.user = user;
-    return res.redirect('/');
-}
+// function session_login(req, res) {
+//     req.session.user = user;
+//     return res.redirect('/');
+// }
 
 exports.addactivity = function(req, res) {
 	res.render('add', {title: 'Add an Activity'});
