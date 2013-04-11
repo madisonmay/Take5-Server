@@ -7,15 +7,17 @@ block scripts
 
         function breakEnded() {
             console.log("Break ended");
+            $('#counter').remove();
+            $('#timer').append('<h2>Mission Accomplished</h2>');
         }
 
         $(document).ready(function() {
-            $('#counter').countdown({image: 'images/digits.png', startTime: "05:00", format: "mm:ss", stepTime: 60,
+            $('#counter').countdown({image: 'images/digits.png', startTime: "00:10", format: "mm:ss", stepTime: 60,
                                     timerEnd: breakEnded, digitWidth: 53, digitHeight: 77});
         });
 
 block content
-    div.hero-unit.span3.offset4#timer(style="padding-left: 10%; padding-right: 10%; min-width: 300px;")
+    div.hero-unit.span3.offset4#timer(style="padding-left: 10%; padding-right: 10%; min-width: 300px; text-align: center;")
         div#counter(style="padding-left:33px;")
 
 

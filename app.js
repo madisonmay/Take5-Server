@@ -45,7 +45,6 @@ app.get('/login', user.login); // Logging in, creating a user.
 app.get('/fetch', database.fetch); // Get a break task
 app.get('/add', user.addactivity);// Add an activity
 
-
 app.get('/auth/google', passport.authenticate);
 app.get('/auth/google/return', passport.authenticate2);
 
