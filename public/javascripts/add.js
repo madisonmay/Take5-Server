@@ -1,13 +1,6 @@
 $(document).ready(function(){
 
-    var h = $(document).height() / 2;
-    var h2 = $('#outer').height();
-
-    console.log(h);
-    console.log(h2);
-    $('#outer').css('top', parseInt(h-h2) + 'px');
-    console.log("Moved");
-
+    center_element('#outer');
 
 	console.log("Ready")
 	$('#add').submit(function () {
@@ -36,3 +29,20 @@ $(document).ready(function(){
 		return false;
 	});
 });
+
+$(window).resize(function() {
+    center_element('#outer');
+});
+
+function center_element(selector){
+    var h = $(document).height() / 2;
+    var h2 = $(selector).height() ;
+
+    var w = $(document).width() / 2;
+    var w2 = $(selector).width() / 2;
+
+    $(selector).css('top', parseInt(h-h2*5/7) + 'px');
+    $(selector).css('left', parseInt(w-w2) + 'px');
+}
+
+

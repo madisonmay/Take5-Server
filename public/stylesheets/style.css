@@ -1,6 +1,19 @@
+html {
+  height: 100%;
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Economica', sans-serif;
+    /* IE10 Consumer Preview */
+  /* Webkit (Chrome 11+) */
+  background-image: -webkit-radial-gradient(center, circle farthest-corner, #000000 0%, #555555 100%);
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-size: 20px;
+  min-height: 650px;
 }
 
 a {
@@ -28,6 +41,16 @@ a {
 }
 
 .min400 {
+  position: fixed;
 	min-width: 400px;
-    max-width: 800px;
+  max-width: 800px;
+}
+
+#take_5 {
+  position: fixed;
+  color: #BBBBBB;
+  font-size: 140px;
+  cursor: hand;
+  cursor: pointer;
+  left: 43%;
 }
