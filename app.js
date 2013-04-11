@@ -25,8 +25,8 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/take5');
 var passport = require('passport')
 
 passport.use(new GoogleStrategy({
-    returnURL: process.env.HOST + '/auth/google/return',
-    realm: process.env.HOST
+    returnURL: 'http://localhost:3000/auth/google/return',
+    realm: 'http://localhost:3000'
   },
   function(identifier, profile, done) {
 
