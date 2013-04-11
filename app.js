@@ -19,10 +19,22 @@ var app = express();
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/take5');
 
-
 // Setup for passport stuff
 // Now includes persistent sessions
 var passport = require('passport')
+
+
+app.configure('development', function(){
+  app.use(express.errorHandler());
+  app.set('host', 'localhost:3000')
+});
+
+app.configure('production', function(){
+  app.use(express.errorHandler());
+  app.set('host', 'take5.herokuapp.com');
+});
+
+console.log(app.get('host'));
 
 passport.use(new GoogleStrategy({
     returnURL: 'http://localhost:3000/auth/google/return',
@@ -81,10 +93,6 @@ app.configure(function () {
   app.use(passport.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
-});
-
-app.configure('development', function(){
-  app.use(express.errorHandler());
 });
 
 // GET requests.
