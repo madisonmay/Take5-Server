@@ -10,13 +10,29 @@ passport.use(new GoogleStrategy({
     // User.findOrCreate({ openId: identifier }, function(err, user) {
     //   done(err, user);
     // });
-    console.log(identifier);
+    var email = profile.emails[1]
+    User.findOne({email:email}).exec(function(err,user){
+      if (err)
+        return done(err)
+      if (!user){
+        user = new User({email:email})
+        user.save(function(err){
+          if (err) {
+            return done(err);
+          }
+          return done(null, user);
+        });
+      }
+      else 
+        return done(null, user);
+    });
+  }));
 
-// DO USER DATABASE STUFF HERE
+// // DO USER DATABASE STUFF HERE
 
-    done();
-  }
-));
+//     done();
+//   }
+// ));
 
 exports.authenticate = passport.authenticate('google');
 

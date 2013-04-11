@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 
 var user_schema = mongoose.Schema({
-	username: String,
-	password: String,
+	email: String,
 	activities_done: Array,
 	preferred_categories: [String]
 })

@@ -24,7 +24,7 @@ exports.add = function(req,res){
 	activity.save(function (err) {
 		if (err) {
 			res.send(err);
-			return console.log("Error saving user", err);
+			return console.log("Error saving activity", err);
 		}
 		res.send(err);
 	});
