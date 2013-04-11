@@ -42,20 +42,32 @@ passport.use(new GoogleStrategy({
     // User.findOrCreate({ openId: identifier }, function(err, user) {
     //   done(err, user);
     // });
-    var email = profile.emails[1]
+    console.log('in the function');
+    var email = profile.emails[0].value;
+    console.log(email);
     User.findOne({email:email}).exec(function(err,user){
-      if (err)
-        return done(err)
-      if (!user){
-        user = new User({email:email})
+      console.log(err);
+      console.log('in the find');
+      console.log(user);
+      if (err){ 
+        console.log(err);
+        return done(err);
+      }
+      if (user==null){
+        console.log('making user');
+        user = new User({email:email});
+        console.log('made user');
         user.save(function(err){
           if (err) {
+            console.log(err);
             return done(err);
           }
+          console.log('saved user');
           return done(null, user);
         });
       }
       else 
+        console.log('found user');
         return done(null, user);
     });
   }));
