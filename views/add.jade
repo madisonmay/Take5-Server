@@ -1,15 +1,26 @@
 extends layout
 
+
+
+block scripts
+	link(rel='stylesheet', href='/stylesheets/chosen.css')
+	script(src='javascripts/chosen.jquery.min.js')
+	script(src='javascripts/add.js')
+
 block content
-	div#outer(class='container well min400', style='max-width: 800px; min-height: 400px;')
+	div#outer(class='container well min400', style='max-width: 800px; min-height: 250px;')
 		form(class='text-center form-horizontal', id='add')
 			fieldset
 				legend(class='text-center', style='font-size: 40px;') Add a Mission
 				textarea(class='span5',name='description', style="margin-right: auto; margin-left: auto; margin-bottom: 10px; display: block;", id='description', placeholder='Description...', rows=5)
-				textarea(class='span5', name='categories', style="margin-right: auto; margin-left: auto; display: block", id='categories', placeholder='Categories...', rows=5)
-				span(class='help-block text-center', style='margin-bottom: 10px;') Please separate categories with a comma.
+				select.selections(class='span5', data-placeholder="Choose a category...", multiple, class="chzn-select", name='categories', style="margin-right: auto; margin-left: auto; width: 475px; display: block; font-size: 40px;", id='categories', placeholder='Categories...', rows=5)
+					option(value="1") One
+					option(value="2") Two
+					option(value="3") Three
+					option(value="4") Four
+					option(value="5") Five
+					option(value="6") Six
+
+				//- span(class='help-block text-center', style='margin-bottom: 10px; margin-top: 10px;') Please separate categories with a comma.
 				label
 				input(type='submit', class='text-center btn btn-success') Add
-
-block scripts
-	script(src='javascripts/add.js')

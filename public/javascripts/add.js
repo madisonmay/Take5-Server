@@ -1,12 +1,14 @@
 $(document).ready(function(){
 
+    $('.selections').chosen();
     center_element('#outer');
 
-	console.log("Ready")
 	$('#add').submit(function () {
-		console.log('ready');
+		console.log('Ready');
+        console.log(req.body.categories);
 		var description = $('#description').val();
 		var categories = $('#categories').val();
+        console.log("Categories: ", categories);
 		var catArray = categories.split(',')
 		var activityCategories = []
 		console.log(catArray)
@@ -21,7 +23,7 @@ $(document).ready(function(){
 		 	      	console.log('error',err);
 		        }
 		        else{
-		           	console.log('hi');
+		           	console.log('success');
 		           	$('#description').val('');
 					$('#categories').val('');
 				}
