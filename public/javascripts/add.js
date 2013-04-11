@@ -1,21 +1,28 @@
 $(document).ready(function(){
-
     $('.selections').chosen();
     center_element('#outer');
 
+	console.log('go');
 	$('#add').submit(function () {
-		console.log('Ready');
-        console.log(req.body.categories);
+  		var categories = $('#categories').val()
 		var description = $('#description').val();
-		var categories = $('#categories').val();
-        console.log("Categories: ", categories);
-		var catArray = categories.split(',')
-		var activityCategories = []
-		console.log(catArray)
-		for (var i = 0; i < catArray.length; i++) {
-			activityCategories[i]=catArray[i].replace(' ','');
-		};
-		$.post("/add", { "description": description, "categories": activityCategories },
+		// if ($(':selected').length > 0){
+		// 	var selected = [];
+		// 	for (var i = 0; i < $(':selected').length; i++) {
+		// 		console.log($(':selected')[i]);
+		// 		// selected.push($(':selected')[i].val());
+		// 	}
+		// // 	console.log(selected);
+		// }
+		// // var categories = $('#categories').val();
+  // //       console.log("Categories: ", categories);
+		// // var catArray = categories.split(',')
+		// // var activityCategories = []
+		// // console.log(catArray)
+		// // for (var i = 0; i < catArray.length; i++) {
+		// // 	activityCategories[i]=catArray[i].replace(' ','');
+		// // };
+		$.post("/add", { "description": description, "categories": categories },
 			function(err){
 				console.log(err);
 				console.log('hi');
@@ -25,7 +32,8 @@ $(document).ready(function(){
 		        else{
 		           	console.log('success');
 		           	$('#description').val('');
-					$('#categories').val('');
+					$('#categories option').attr('selected',false);
+					$('.selections').val('').trigger('liszt:updated');
 				}
 		    });
 		return false;
