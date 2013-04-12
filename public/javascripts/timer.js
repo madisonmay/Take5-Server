@@ -16,8 +16,8 @@ $(document).ready(function() {
         $('.plus').removeClass('btn-success');
         $('.minus').addClass('btn-danger');
         console.log("Classes removed");
+        $.post('/blacklist', {'action': 'blacklist'});
     })
-
 })
 
 //Refactoring is for the weak.

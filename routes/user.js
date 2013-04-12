@@ -15,6 +15,26 @@ exports.login = function(req, res) {
 //     return res.redirect('/');
 // }
 
+exports.memory = function(req, res) {
+    req.user.last_activity = req.body.activity_id
+    req.user.save(function(err){
+        if (err){
+            res.send(err);
+            console.log('error', err);
+        }
+    });
+}
+
+exports.blacklist = function(req, res) {
+    req.user.blacklist.push(req.user.last_activity);
+    req.user.save(function(err){
+        if (err){
+            res.send(err);
+            console.log('error', err);
+        }
+    });
+}
+
 exports.addactivity = function(req, res) {
 	res.render('add', {title: 'Add an Activity'});
 };

@@ -7,7 +7,7 @@ block content
           h3.header3() Your mission, should you choose to accept it:
           hr
           div #{activity.description}
-          div
+          div.a_id(id="#{activity._id}")
             img(class='img-rounded breakPic text-center', src="#{activity.image_url}", alt="It\'s Break Time!")
           div
             button#accept.btn.btn-success() Accept

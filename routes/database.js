@@ -3,6 +3,14 @@ var Activity = require('../models/activity_schema')
 	, Category = require('../models/category_schema')
 	, mongoose = require('mongoose');
 
+
+function inArray(array, value) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] == value) return true;
+    }
+    return false;
+}
+
 exports.fetch = function(req,res){
 	Activity.find().exec(function(err, data){
 		var user=req.user;
@@ -12,7 +20,12 @@ exports.fetch = function(req,res){
 			for (var j = 0; j < data.length; j++){
 				for (var k = 0; k < data[j].categories.length; k++){
 					if (user.preferred_categories[i]===data[j].categories[k]){
-						activities.push(data[j]);
+						if (!(inArray(user.blacklist, data[j]._id))) {
+							console.log("Activity matches.")
+							activities.push(data[j]);
+						} else {
+							console.log("Blacklisted", data[j]._id);
+						}
 					}
 				}
 			}

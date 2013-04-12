@@ -8,7 +8,8 @@ var user_schema = mongoose.Schema({
 	activities_done: Array,
 	preferred_categories: [String],
     accessToken: String,
-    blacklist: Array
+    blacklist: [String],
+    last_activity: String
 })
 
 var User = mongoose.model('User', user_schema);

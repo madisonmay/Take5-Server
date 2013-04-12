@@ -32,8 +32,8 @@ app.configure('development', function(){
 console.log(app.get('host'));
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://take5.herokuapp.com/auth/google/return',
-    realm: 'http://take5.herokuapp.com'
+    returnURL: 'http://localhost:3000/auth/google/return',
+    realm: 'http://localhost:3000/'
   },
   function(identifier, profile, done) {
 
@@ -98,6 +98,8 @@ app.get('/fetch', loginRequired, database.fetch); // Get a break task
 app.get('/add', loginRequired, user.addactivity);// Add an activity
 app.get('/break', loginRequired, user.break);
 app.get('/settings', loginRequired, user.settings);
+app.post('/memory', user.memory);
+app.post('/blacklist', user.blacklist);
 
 
 // Passport session setup.
