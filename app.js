@@ -33,9 +33,10 @@ console.log(app.get('host'));
 
 var local = 'http://localhost:3000/'
 var remote = 'http://take5.herokuapp.com/'
+
 passport.use(new GoogleStrategy({
-    returnURL: local + 'auth/google/return',
-    realm: local
+    returnURL: remote + 'auth/google/return',
+    realm: remote
   },
   function(identifier, profile, done) {
 
