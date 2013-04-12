@@ -26,14 +26,14 @@ var passport = require('passport')
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-  app.set('host', 'take5.herokuapp.com')
+  app.set('host', 'localhost:3000')
 });
 
 console.log(app.get('host'));
 
 passport.use(new GoogleStrategy({
-    returnURL: app.get('host') + '/auth/google/return',
-    realm: app.get('host')
+    returnURL: 'http://take5.herokuapp.com/auth/google/return',
+    realm: 'http://take5.herokuapp.com'
   },
   function(identifier, profile, done) {
 
