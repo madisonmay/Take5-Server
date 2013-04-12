@@ -5,4 +5,8 @@ $(document).ready(function () {
         console.log("Mission accepted;")
         window.location = '/';
     });
+    $('#decline').click(function() {
+        console.log("Mission accepted;")
+        window.location = '/fetch';
+    });
 });

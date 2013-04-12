@@ -6,6 +6,7 @@ block content
         div.hero-unit.span6.offset3.pagination-centered#break(style="width: 50%; max-width: 400px; text-align: center; display: block;")
           h3(style="margin-bottom: 10px; text-align: center;") Your mission, should you choose to accept it:
           br
-          img(src="http://www.milanstolicny.com/wp-content/uploads/2009/01/img_3352.JPG", style="border-radius: 20px; display: block; width: 400px;")
+          div #{activity.description}
+          img(src="#{activity.image_url}", style="border-radius: 20px; display: block; width: 400px;")
           button#accept.btn.btn-success(style='margin-top: 25px; display: inline-block; margin-right: 25px;') Accept
           button#decline.btn.btn-danger(style='margin-top: 25px; display: inline-block') Decline

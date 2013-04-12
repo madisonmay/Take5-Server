@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$('#add').submit(function () {
   		var categories = $('#categories').val()
 		var description = $('#description').val();
-        var url = $('.url').val();
+        var url = $('.url').val()||"/images/128.png";
 		// if ($(':selected').length > 0){
 		// 	var selected = [];
 		// 	for (var i = 0; i < $(':selected').length; i++) {

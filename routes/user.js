@@ -23,6 +23,21 @@ exports.break = function(req, res) {
     res.render('break', {title: 'Take a break!'})
 }
 
+exports.settings = function(req, res) {
+    res.render('user', {title: 'Settings', prefs: JSON.stringify(req.user.preferred_categories)})
+}
+
+exports.prefs = function(req, res) {
+	req.user.preferred_categories=req.body.categories;
+	req.user.save(function(err){
+		if (err){
+			res.send(err);
+			return console.log('error', err);
+		}
+		res.send(err);
+	});
+}
+
 // exports.loginauth = function(req, res) {
 // 	User.findOne({username: req.body.username}).exec(function (err, user) { // Starts having trouble here.
 // 		if (err) {

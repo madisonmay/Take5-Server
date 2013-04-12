@@ -93,6 +93,8 @@ app.get('/login', user.login); // Logging in, creating a user.
 
 app.get('/fetch', loginRequired, database.fetch); // Get a break task
 app.get('/add', loginRequired, user.addactivity);// Add an activity
+app.get('/break', loginRequired, user.break);
+app.get('/settings', loginRequired, user.settings);
 
 
 // Passport session setup.
@@ -118,7 +120,8 @@ app.get('/auth/google/return', passport.authenticate('google', {failureRedirect:
 
 // POST requests.
 app.post('/add', loginRequired, database.add);//Add activities to database
-app.get('/break', loginRequired, user.break)
+app.post('/prefs', loginRequired, user.prefs);//Set user preferences
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
