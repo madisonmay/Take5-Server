@@ -32,8 +32,8 @@ app.configure('development', function(){
 console.log(app.get('host'));
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:3000/auth/google/return',
-    realm: 'http://localhost:3000/'
+    returnURL: 'http://take5.herokuapp.com/auth/google/return',
+    realm: 'http://take5.herokuapp.com'
   },
   function(identifier, profile, done) {
 
