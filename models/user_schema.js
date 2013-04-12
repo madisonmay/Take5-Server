@@ -1,3 +1,6 @@
+
+//Not currently used in implementation -- may be used in the future.
+
 var mongoose = require('mongoose');
 
 var user_schema = mongoose.Schema({

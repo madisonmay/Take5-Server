@@ -20,6 +20,22 @@ a {
   color: #00B7FF;
 }
 
+.nav-item {
+  display: inline-block;
+  text-indent: .3em;
+}
+.navigation {
+  display: inline-block;
+  width: 100%;
+  margin-left: -60px;
+  text-align: center;
+  position: fixed;
+  bottom: 25px;
+  color: #BBBBBB;
+  font-size: 40px;
+  cursor: hand;
+  cursor: pointer;
+}
 
 #login {
     position: absolute;

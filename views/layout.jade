@@ -7,6 +7,17 @@ html
     script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(href='http://fonts.googleapis.com/css?family=Economica', rel='stylesheet', type='text/css')
+    script(src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js")
+    script(src="/javascripts/layout.js")
     block scripts
   body
+    div.navigation
+        div.nav-item |
+        div.nav-item#settings_link Settings
+        div.nav-item -
+        div.nav-item#break_link Break
+        div.nav-item -
+        div.nav-item#add_link Add
+        div.nav-item |
     block content
+

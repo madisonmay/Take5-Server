@@ -8,11 +8,13 @@ block scripts
         function breakEnded() {
             console.log("Break ended");
             $('#counter').remove();
-            $('#timer').append('<h2>Mission Accomplished</h2>');
+            $('#timer').append('<h2> - Mission Accomplished - </h2><h2>Rate your break:</h2>');
+            $('#timer').append('<button class="btn btn-success plus" style="display: inline-block;margin-right: 15px;">+</button>');
+            $('#timer').append('<button class="btn btn-danger minus" style="display: inline-block;">-</button>');
         }
 
         $(document).ready(function() {
-            $('#counter').countdown({image: 'images/digits.png', startTime: "05:00", format: "mm:ss", stepTime: 60,
+            $('#counter').countdown({image: 'images/digits.png', startTime: "00:05", format: "mm:ss", stepTime: 60,
                                     timerEnd: breakEnded, digitWidth: 53, digitHeight: 77});
         });
 
