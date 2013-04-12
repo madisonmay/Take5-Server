@@ -6,7 +6,7 @@ var Activity = require('../models/activity_schema')
 exports.fetch = function(req,res){
 	Activity.find().exec(function(err, data){
 		var user=req.user;
-		var activities=[]
+		var activities=[];
 		console.log(data);
 		for (var i = 0; i < user.preferred_categories.length; i++) {
 			for (var j = 0; j < data.length; j++){
@@ -17,6 +17,7 @@ exports.fetch = function(req,res){
 				}
 			}
 		}
+
 		if (activities.length == 0) {
 			console.log('hi')
 			activities = data;
