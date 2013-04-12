@@ -26,7 +26,7 @@ var passport = require('passport')
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-  app.set('host', process.env.PRODUCTION_URL || 'http://localhost:3000')
+  app.set('host', 'take5.herokuapp.com')
 });
 
 console.log(app.get('host'));
