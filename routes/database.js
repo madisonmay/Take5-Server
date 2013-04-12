@@ -17,7 +17,7 @@ exports.fetch = function(req,res){
 				}
 			}
 		}
-		if (activities==false) {
+		if (activities.length == 0) {
 			console.log('hi')
 			activities = data;
 		}
