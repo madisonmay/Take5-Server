@@ -5,7 +5,7 @@ var Activity = require('../models/activity_schema')
   	, GoogleStrategy = require('passport-google').Strategy;
 
 exports.login = function(req, res) {
-
+    req.session.url = '/';
 	res.render('login', {title: "Sign In"});
 };
 

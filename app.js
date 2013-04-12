@@ -19,14 +19,21 @@ var app = express();
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/take5');
 
-
 // Setup for passport stuff
 // Now includes persistent sessions
 var passport = require('passport')
 
+
+app.configure('development', function(){
+  app.use(express.errorHandler());
+  app.set('host', process.env.PRODUCTION_URL || 'http://localhost:3000')
+});
+
+console.log(app.get('host'));
+
 passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost:3000/auth/google/return',
-    realm: 'http://localhost:3000'
+    returnURL: app.get('host') + '/auth/google/return',
+    realm: app.get('host')
   },
   function(identifier, profile, done) {
 
@@ -63,7 +70,7 @@ app.configure(function () {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set('secret', process.env.SESSION_SECRET || 'terrible, terrible secret')
-  app.use(express.favicon());
+  app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -81,10 +88,6 @@ app.configure(function () {
   app.use(passport.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
-});
-
-app.configure('development', function(){
-  app.use(express.errorHandler());
 });
 
 // GET requests.

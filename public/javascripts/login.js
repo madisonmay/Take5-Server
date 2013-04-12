@@ -11,7 +11,7 @@ $(document).ready(function() {
     });
 
     $('#take_5').click(function() {
-        window.location = 'http://localhost:3000/auth/google'
+        window.location = '/auth/google'
     });
 
 });
