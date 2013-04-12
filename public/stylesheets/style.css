@@ -144,3 +144,16 @@ a {
   margin-bottom: 10px;
   text-align: center;
 }
+
+.breakPic {
+  border-radius: 30px;
+  display: inline-block;
+  max-height: 150px;
+  padding: 20px;
+  /*width: 200px;*/
+}
+
+.inline-block {
+  display: inline-block;
+}
+
