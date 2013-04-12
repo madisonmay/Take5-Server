@@ -7,7 +7,8 @@ var user_schema = mongoose.Schema({
 	email: String,
 	activities_done: Array,
 	preferred_categories: [String],
-    accessToken: String
+    accessToken: String,
+    blacklist: Array
 })
 
 var User = mongoose.model('User', user_schema);
