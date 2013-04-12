@@ -72,13 +72,13 @@ app.configure(function () {
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.set('secret', process.env.SESSION_SECRET || 'terrible, terrible secret')
+  app.set('secret', process.env.SESSION_SECRET)
   app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser(app.get('secret')));
-  app.use(express.session({ secret: 'keyboard cat' }))
+  app.use(express.session({ secret: app.get('secret') }))
   // app.use(express.session({
   //   maxAge: new Date(Date.now() + 3600000),
   //   store: new MongoStore(
