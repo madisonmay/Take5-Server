@@ -16,7 +16,7 @@ block content
 
 				//- span(class='help-block text-center', style='margin-bottom: 10px; margin-top: 10px;') Please separate categories with a comma.
 				label
-				input(type='submit', class='text-center btn btn-success') Save Changes
+				button(type='submit', class='text-center btn btn-success') Save Changes
 
 
 block scripts
@@ -30,5 +30,5 @@ block scripts
 			console.log(currentPrefs[i]);
 			options.filter('[value="'+currentPrefs[i]+'"]').prop('selected',true)
 			//- $("#categories option[value=" + currentPrefs[i] + "]").attr('selected',true);
-			$('.selections').attr('selected',true).trigger('liszt:updated');
+			$('option').trigger('liszt:updated');
 		}

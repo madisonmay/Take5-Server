@@ -17,6 +17,6 @@ $(document).ready(function() {
     })
 
     $('#break_link').click(function() {
-        window.location = '/break';
+        window.location = '/fetch';
     })
 })
