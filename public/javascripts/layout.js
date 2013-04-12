@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log('Layout.js')
     $('.nav-item').mouseover(function() {
         $(this).animate({"color": "#45a546"}, 500);
     });
@@ -17,6 +16,6 @@ $(document).ready(function() {
     })
 
     $('#break_link').click(function() {
-        window.location = '/break';
+        window.location = '/fetch';
     })
 })

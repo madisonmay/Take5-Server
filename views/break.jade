@@ -3,10 +3,10 @@ extends layout
 block content
     script(src="/javascripts/break.js")
     div.container
-        div.hero-unit.span6.offset3.pagination-centered#break(style="width: 50%; max-width: 400px; text-align: center; display: block;")
-          h3(style="margin-bottom: 10px; text-align: center;") Your mission, should you choose to accept it:
+        div.hero-unit.span6.offset3.pagination-centered#break()
+          h3.header3() Your mission, should you choose to accept it:
           br
           div #{activity.description}
-          img(src="#{activity.image_url}", style="border-radius: 20px; display: block; width: 400px;")
-          button#accept.btn.btn-success(style='margin-top: 25px; display: inline-block; margin-right: 25px;') Accept
-          button#decline.btn.btn-danger(style='margin-top: 25px; display: inline-block') Decline
+          img.image(src="#{activity.image_url}")
+          button#accept.btn.btn-success() Accept
+          button#decline.btn.btn-danger() Decline
