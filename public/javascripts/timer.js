@@ -8,14 +8,13 @@ $(document).ready(function() {
     $(document).on('click', '.plus', function() {
         $('.plus').addClass('btn-success');
         $('.minus').removeClass('btn-danger');
-        console.log("Classes removed");
+        $.post('/recommend', {'action': 'recommend'});
     })
 
 
     $(document).on('click', '.minus', function() {
         $('.plus').removeClass('btn-success');
         $('.minus').addClass('btn-danger');
-        console.log("Classes removed");
         $.post('/blacklist', {'action': 'blacklist'});
     })
 })

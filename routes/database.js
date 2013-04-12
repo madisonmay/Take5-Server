@@ -12,36 +12,63 @@ function inArray(array, value) {
 }
 
 exports.fetch = function(req,res){
+	//Populate list with activities
 	Activity.find().exec(function(err, data){
 		var user=req.user;
 		var activities=[];
-		console.log(data);
+		var selection=[];
+
+		//begin for loops of death
 		for (var i = 0; i < user.preferred_categories.length; i++) {
 			for (var j = 0; j < data.length; j++){
+				console.log(data[j]._id)
 				for (var k = 0; k < data[j].categories.length; k++){
 					if (user.preferred_categories[i]===data[j].categories[k]){
 						if (!(inArray(user.blacklist, data[j]._id))) {
 							console.log("Activity matches.")
-							activities.push(data[j]);
+
+							//Temporary solution to weight activites based on score
+							for (var m = 0; m < (data[j].length + 1); m++) {
+								activities.push(data[j]);
+							}
 						} else {
 							console.log("Blacklisted", data[j]._id);
 						}
+					} else if (!(inArray(user.blacklist, data[j]._id))) {
+						console.log('Pushed to selection')
+						//Temporary solution to weight activities based on score
+						for (var m = 0; m < (data[j].score + 1); m++) {
+							selection.push(data[j]);
+						}
+					} else {
+						console.log('Blacklisted and not in category', data[j]._id)
 					}
 				}
 			}
 		}
 
 		if (activities.length == 0) {
-			console.log('hi')
-			activities = data;
+			console.log('No matching activities')
+			console.log('Selection: ', selection)
+			if (selection.length > 0) {
+				console.log("Using selection")
+				//unblacklisted activities
+				activities = selection;
+			} else {
+				console.log("Using full database")
+				//worst case scenario
+				activities = data;
+			}
 		}
 		console.log(activities);
+
+		//Send random activity
 		res.render('break',{title:'Break', activity: activities[Math.floor(Math.random()*activities.length)]});
 	});
 };
 
 exports.add = function(req,res){
-	var activity = new Activity({categories: req.body.categories, description: req.body.description, image_url: req.body.image_url})
+	var activity = new Activity({categories: req.body.categories, description: req.body.description, image_url: req.body.image_url, score: 5})
 	activity.save(function (err) {
 		if (err) {
 			res.send(err);

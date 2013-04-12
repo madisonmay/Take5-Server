@@ -25,6 +25,13 @@ exports.memory = function(req, res) {
     });
 }
 
+exports.recommend = function(req, res){
+    Activity.findOne({'_id': req.user.last_activity}, function(err, activity) {
+        activity.score++
+        activity.save();
+    })
+}
+
 exports.blacklist = function(req, res) {
     req.user.blacklist.push(req.user.last_activity);
     req.user.save(function(err){
@@ -33,6 +40,10 @@ exports.blacklist = function(req, res) {
             console.log('error', err);
         }
     });
+    Activity.findOne({'_id': req.user.last_activity}, function(err, activity) {
+        activity.score--
+        activity.save();
+    })
 }
 
 exports.addactivity = function(req, res) {
